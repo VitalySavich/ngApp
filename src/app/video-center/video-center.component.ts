@@ -11,6 +11,7 @@ import { VideoService } from './../video.service';
 export class VideoCenterComponent implements OnInit {
 
   selectedVideo: Video;
+  private hidenewVideo: boolean = true;
 
   /*videos: Video[] = [
     {"_id": "1", "title": "Title 1", "url": "Url 1", "description": "Desc 1"},
@@ -30,7 +31,23 @@ export class VideoCenterComponent implements OnInit {
 
   onSelectVideo(video: any) {
     this.selectedVideo = video;
+    this.hidenewVideo = true;
     console.log(this.selectedVideo);
   }
+
+  newVideo() {
+    this.hidenewVideo = false;
+  }
+
+  onSubmitAddVideo(video: Video) {
+    this._videoService.addVideo(video)
+      .subscribe(resNewVideo => {
+        this.videos.push(resNewVideo);
+        this.hidenewVideo = true;
+        this.selectedVideo = resNewVideo;
+      });
+
+  }
+
 
 }
