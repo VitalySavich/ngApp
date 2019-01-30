@@ -14,6 +14,22 @@ mongoose.connect(db, function(err){
     }
 });
 
+function verifyToken(req, res, next) {
+    if(!req.headers.authorization) {
+      return res.status(401).send('Unauthorized request')
+    }
+    let token = req.headers.authorization.split(' ')[1]
+    if(token === 'null') {
+      return res.status(401).send('Unauthorized request')    
+    }
+    let payload = jwt.verify(token, 'secretKey')
+    if(!payload) {
+      return res.status(401).send('Unauthorized request')    
+    }
+    req.userId = payload.subject
+    next()
+  }
+
 router.get('/', function(req, res){
     res.send('api works');
 });
@@ -52,7 +68,7 @@ router.post('/login', (req, res) => {
     })
   })
 
-router.get('/videos', function(req, res){
+router.get('/videos', verifyToken, function(req, res){
     console.log('Get request for all videos');
     Video.find({})
     .exec(function(err, videos){
