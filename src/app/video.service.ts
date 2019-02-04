@@ -12,7 +12,13 @@ export class VideoService {
   private _putUrl = "/api/video/";
   private _deleteUrl = "/api/video/";
 
+  private _searchUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&key=AIzaSyC7QseGbdJp2wtD8tT1suUJAnFK2jpnYHU";
+
   constructor(private _http: HttpClient) { }
+
+  searchVideos(query) {
+    return this._http.get(this._searchUrl + "&q=" + query);
+  }
 
   getVideos() {
     return this._http.get<Video[]>(this._getUrl);

@@ -13,6 +13,7 @@ import { SafePipe } from './safe.pipe';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { VideoSearchComponent } from './video-search/video-search.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     VideoDetailComponent,
     SafePipe,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    VideoSearchComponent
   ],
   imports: [
     BrowserModule,

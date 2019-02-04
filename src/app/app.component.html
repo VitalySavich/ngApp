@@ -9,6 +9,9 @@
     <li class="nav-item">
       <a routerLink="/videos" routerLinkActive="active" class="nav-link">Playlist</a>
     </li>
+    <li class="nav-item">
+      <a routerLink="/search" routerLinkActive="active" class="nav-link">VideoSearch</a>
+    </li>
   </ul>
   <ul class="navbar-nav">
     <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
